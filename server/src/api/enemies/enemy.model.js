@@ -5,7 +5,7 @@ const enemySchema = new mongoose.Schema(
     {
         name: { type: String, required: true, trim: true },
         specie: { type: String, required: true, trim: true },
-        img: { type: String, required: true, trim: true },
+        img: { type: String, required: false, trim: true },
         rank: { type: Number, required: false, trim: true },
 
     },

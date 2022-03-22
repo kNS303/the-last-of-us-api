@@ -22,13 +22,12 @@ const getOne = async (req, res, next) => {
 
 const postOne = async (req, res, next) => {
     try {
-        const enemy = new Enemy()
-        enemy.name = req.body.name;
-        enemy.specie = req.body.specie;
+        const enemy = new Enemy(req.body)
+    
         if (req.file) {
             enemy.img = req.file.path;
         }
-        enemy.rank = req.body.rank;
+      
 
         const enemyDB = await enemy.save();
         return res.status (201).json(enemyDB)

@@ -22,13 +22,11 @@ const getOne = async (req, res, next) => {
 
 const postOne = async (req, res, next) => {
     try {
-        const character = new Character()
-        character.name = req.body.name;
-        character.age = req.body.age;
+        const character = new Character(req.body)
+        
         if (req.file) {
             character.img = req.file.path;
         }
-        character.bio = req.body.bio;
 
         const characterDB = await character.save();
         return res.status (201).json(characterDB)
