@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 
+const CharacterRoutes = require ("./src/api/characters/character.route");
+const EnemyRoutes = require ("./src/api/enemies/enemy.route");
+
 const { connect } = require('./src/utils/database/db');
 
 connect();
@@ -17,9 +20,8 @@ app.use(express.urlencoded({
 
 app.use(cors());
 
-app.use('/public', express.static('public'));
-
-app.use('/api', (req, res, next) => "im alive")
+app.use('/api/characters', CharacterRoutes);
+app.use('/api/enemies', EnemyRoutes)
 
 const PORT = process.env.PORT
 
@@ -29,7 +31,7 @@ const server = app.listen(PORT, () => {
 
 app.use((req, res, next) => {
     setImmediate(() => {
-        next(new Error('Something went wrong'));
+        next(new Error('Ellie dont find the way'));
     });
 });
 
